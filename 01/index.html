@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Invoicing QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="form-container">
+        <h2>E-Invoicing QR Code Generator</h2>
+        <label for="invoiceNumber">Invoice Number:</label>
+        <input type="text" id="invoiceNumber" placeholder="Enter Invoice Number" required>
+        
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" placeholder="Enter Amount" required>
+        
+        <button id="generate-btn" onclick="generateQRCode()">Generate QR Code</button>
+
+        <div id="qr-code"></div>
+    </div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        function generateQRCode() {
+            var invoiceNumber = document.getElementById('invoiceNumber').value;
+            var amount = document.getElementById('amount').value;
+
+            // Constructing the text for the QR code (you might need to follow the e-invoicing standard)
+            var qrText = "InvoiceNumber: " + invoiceNumber + "\nAmount: " + amount;
+
+            // Clear previous QR code
+            document.getElementById('qr-code').innerHTML = '';
+
+            // Generating QR code
+            var qrcode = new QRCode(document.getElementById('qr-code'), {
+                text: qrText,
+                width: 128,
+                height: 128
+            });
+        }
+    </script>
+</body>
+</html>
+```
+
